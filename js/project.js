@@ -35,7 +35,7 @@ function preload() {
 	boarder = new Sprite("img/boarder.png");
 	game.loadBackgroundImage('background',"img/labyrinthboardgreen.png");
 	game.loadBackgroundImage('win',"img/ENDA.png");
-	game.loadBackgroundImage('maze2',"img/maze2.png");
+	//game.loadBackgroundImage('maze2',"img/maze2.png");
 
 	rubbish = paper;
 }
@@ -84,7 +84,14 @@ function createMaze2(){
 	gameScore1 = score;
 	score = 0;
 	gameTime = time;
+
 	//Create boarders
+
+	//Edges
+	boarder.create(50,122,830,2);
+	boarder.create(50,88,33,815);
+	boarder.create(841,136,33,773);
+	boarder.create(48,879,823,30);
 }
 function create() {
 
@@ -132,6 +139,7 @@ function hitPaperBin(paper, bin1){
 	score = score + 50 ;
 	rubbish = plastic;
 }
+
 function hitGlassBin(glass,bin2){
 	glass.kill();
 
@@ -144,9 +152,14 @@ function hitGlassBin(glass,bin2){
 	game.setBackgroundImage('win',934,934);
 	//boarder.children[0].kill();
 	boarder.setAlpha(0);
+
+	//createMaze2();
+
 	endGame();
 }
+
 function endGame(){
+
 	bin2.children[0].kill();
 	bin1.children[0].kill();
 	bin3.children[0].kill();
@@ -181,12 +194,14 @@ function start(){
 		time = 0;
 }
 function restart(){
+	endButton.kill();
 	location.reload();
 	gameScore1 = score;
 	score = 0 ;
 	time = 0;
 }
 function createObjects(){
+
 	if(starting){
 		paper.create(100,236);
 		plastic.create(740, 826);
@@ -203,8 +218,6 @@ function update() {
 
 
 	button.addDownAction(start,0);
-
-
 	createObjects();
 
 	if(left.isDown()) {
@@ -247,7 +260,7 @@ function update() {
 	game.checkCollision(plastic,boarder,hitWall);
 	game.checkCollision(glass,boarder,hitWall);
 
-	//time++;
+//	time++;
 
 	scoreText.changeText(" " + score);
 
