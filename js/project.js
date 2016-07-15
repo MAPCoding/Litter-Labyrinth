@@ -247,7 +247,7 @@ function update() {
 	game.checkCollision(plastic,boarder,hitWall);
 	game.checkCollision(glass,boarder,hitWall);
 
-	time++;
+	//time++;
 
 	scoreText.changeText(" " + score);
 
